@@ -1,0 +1,19 @@
+@if (visible()) {
+  <div class="backdrop" (click)="close()"></div>
+  <dialog open class="error-dialog" role="alertdialog">
+    <h2>Une erreur est survenue</h2>
+    <p>{{ message() }}</p>
+
+    @if (details().length) {
+      <ul>
+        @for (detail of details(); track detail) {
+          <li>{{ detail }}</li>
+        }
+      </ul>
+    }
+
+    <p class="actions">
+      <button (click)="close()">Fermer</button>
+    </p>
+  </dialog>
+}

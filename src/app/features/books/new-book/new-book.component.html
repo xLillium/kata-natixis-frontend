@@ -1,0 +1,50 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Ajouter un livre</h2>
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <p>
+      <label for="title">Titre</label>
+      <input type="text" id="title" name="title" [(ngModel)]="title" required #titleCtrl="ngModel"/>
+      @if (titleCtrl.invalid && titleCtrl.touched) {
+        <span class="error">Le titre est requis.</span>
+      }
+    </p>
+
+    <p>
+      <label for="author">Auteur</label>
+      <input type="text" id="author" name="author" [(ngModel)]="author" required #authorCtrl="ngModel"/>
+      @if (authorCtrl.invalid && authorCtrl.touched) {
+        <span class="error">L’auteur est requis.</span>
+      }
+    </p>
+
+    <p>
+      <label for="isbn">ISBN</label>
+      <input
+        type="text"
+        id="isbn"
+        [formControl]="isbnControl"
+        name="isbn"
+      />
+      @if (isbnControl.errors?.['required'] && !isbnControl.untouched) {
+        <span class="error">L’ISBN est requis.</span>
+      }
+
+      @if (isbnControl.errors?.['invalidIsbn'] && !isbnControl.untouched) {
+        <span class="error">L’ISBN doit contenir uniquement des chiffres et faire 10 ou 13 caractères.</span>
+      }
+    </p>
+
+    <p>
+      <label>
+        Emprunté ?
+        <input type="checkbox" [(ngModel)]="borrowed" name="borrowed"/>
+      </label>
+    </p>
+
+    <p class="actions">
+      <button type="button" (click)="onCancel()">Annuler</button>
+      <button type="submit">Ajouter</button>
+    </p>
+  </form>
+</dialog>

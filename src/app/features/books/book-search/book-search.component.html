@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSearch()" class="search-form">
+  <input type="text" [(ngModel)]="title" name="title" placeholder="Titre" />
+  <input type="text" [(ngModel)]="author" name="author" placeholder="Auteur" />
+  <button type="submit">Rechercher</button>
+  <button type="button" (click)="onReset()">Réinitialiser</button>
+</form>

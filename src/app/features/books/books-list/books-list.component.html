@@ -1,0 +1,20 @@
+@if (isAddingBook()) {
+  <app-new-book (cancel)="onCancelAddBook()" (add)="onConfirmAddBook($event)"/>
+}
+
+<div class="actions">
+  <app-book-search (isSearching)="onSearchBook($event)"/>
+  <button (click)="onStartAddBook()">Ajouter un livre</button>
+</div>
+
+@if (isLoading()) {
+  <p>Chargement des livres...</p>
+} @else {
+  @if (hasBooks()) {
+    @for (book of books(); track book.id) {
+      <app-book-card [book]="book"/>
+    }
+  } @else {
+    <p>Aucun résultat.</p>
+  }
+}

@@ -1,0 +1,15 @@
+<div class="book-card">
+  <h3>{{ book().title }}</h3>
+  <p>Auteur : {{ book().author }}</p>
+  <p>ISBN : {{ book().isbn }}</p>
+  <p>
+    Statut :
+    <span>
+          {{ book().borrowed ? 'Emprunté' : 'Disponible' }}
+    </span>
+  </p>
+
+  <button (click)="onChangeBookStatus()">
+    {{ book().borrowed ? 'Retourner' : 'Emprunter' }}
+  </button>
+</div>
